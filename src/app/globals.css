@@ -215,6 +215,42 @@
   --border-danger: var(--red-600);
   --border-danger-faint: var(--red-100);
   --border-danger-fade: var(--red-50);
+  /* Text */
+  --text-plain: var(--zinc-800);
+  --text-subtle: var(--zinc-300);
+  --text-muted: var(--zinc-400);
+  --text-soft: var(--zinc-500);
+  --text-default: var(--zinc-600);
+  --text-inverse: #ffffff;
+  --text-primary: var(--maroon-800);
+  --text-primary-faint: var(--maroon-100);
+  --text-primary-fade: var(--maroon-50);
+  --text-info: var(--blue-600);
+  --text-info-faint: var(--blue-100);
+  --text-info-fade: var(--blue-50);
+  --text-secondary: var(--soft-pink-400);
+  --text-secondary-faint: var(--soft-pink-100);
+  --text-secondary-fade: var(--soft-pink-50);
+  --text-success: var(--emerald-500);
+  --text-success-faint: var(--emerald-100);
+  --text-success-fade: var(--emerald-50);
+  --text-warning: var(--yellow-400);
+  --text-warning-faint: var(--yellow-100);
+  --text-warning-fade: var(--yellow-50);
+  --text-danger: var(--red-600);
+  --text-danger-faint: var(--red-100);
+  --text-danger-fade: var(--red-50);
+
+  /* Shadows and focus rings */
+  --shadow-subtle: 0 4px 10px rgb(0 0 0 / 7%);
+  --shadow-subtle-lg: 0 4px 18px rgb(0 0 0 / 7%);
+  --shadow-subtle-sm: 0 2px 5px rgb(0 0 0 / 7%);
+  --shadow-soft: 0 4px 10px rgb(0 0 0 / 10%);
+  --shadow-soft-lg: 0 4px 18px rgb(0 0 0 / 10%);
+  --shadow-soft-sm: 0 2px 5px rgb(0 0 0 / 10%);
+  --ring-default: var(--maroon-50);
+  --ring-danger: var(--red-100);
+
 }
 
 @theme inline {
@@ -432,50 +468,444 @@
   --color-border-danger: var(--border-danger);
   --color-border-danger-faint: var(--border-danger-faint);
   --color-border-danger-fade: var(--border-danger-fade);
+  /* Text, shadows, and focus rings */
+  --color-text-plain: var(--text-plain);
+  --color-text-subtle: var(--text-subtle);
+  --color-text-muted: var(--text-muted);
+  --color-text-soft: var(--text-soft);
+  --color-text-default: var(--text-default);
+  --color-text-inverse: var(--text-inverse);
+  --color-text-primary: var(--text-primary);
+  --color-text-primary-faint: var(--text-primary-faint);
+  --color-text-primary-fade: var(--text-primary-fade);
+  --color-text-info: var(--text-info);
+  --color-text-info-faint: var(--text-info-faint);
+  --color-text-info-fade: var(--text-info-fade);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-secondary-faint: var(--text-secondary-faint);
+  --color-text-secondary-fade: var(--text-secondary-fade);
+  --color-text-success: var(--text-success);
+  --color-text-success-faint: var(--text-success-faint);
+  --color-text-success-fade: var(--text-success-fade);
+  --color-text-warning: var(--text-warning);
+  --color-text-warning-faint: var(--text-warning-faint);
+  --color-text-warning-fade: var(--text-warning-fade);
+  --color-text-danger: var(--text-danger);
+  --color-text-danger-faint: var(--text-danger-faint);
+  --color-text-danger-fade: var(--text-danger-fade);
+  --shadow-subtle: var(--shadow-subtle);
+  --shadow-subtle-lg: var(--shadow-subtle-lg);
+  --shadow-subtle-sm: var(--shadow-subtle-sm);
+  --shadow-soft: var(--shadow-soft);
+  --shadow-soft-lg: var(--shadow-soft-lg);
+  --shadow-soft-sm: var(--shadow-soft-sm);
+  --color-ring-default: var(--ring-default);
+  --color-ring-danger: var(--ring-danger);
+
 }
 
+/* Follow the system theme unless an explicit theme is selected. */
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not(.light):not(.dark):not([data-theme]) {
+    color-scheme: dark;
     --background: #0a0a0a;
-    --foreground: #ededed;
+    --foreground: var(--zinc-50);
+
+    /* bg */
+    --bg-plain: var(--zinc-700);
+    --bg-subtle: var(--zinc-800);
+    --bg-muted: var(--zinc-900);
+    --bg-soft: var(--zinc-700);
+    --bg-default: var(--zinc-600);
+    --bg-inverse: var(--zinc-50);
+    --bg-primary: var(--soft-pink-300);
+    --bg-primary-faint: color-mix(in srgb, var(--soft-pink-300) 75%, transparent);
+    --bg-primary-fade: color-mix(in srgb, var(--soft-pink-300) 25%, transparent);
+    --bg-info: var(--blue-500);
+    --bg-info-faint: var(--blue-900);
+    --bg-info-fade: color-mix(in srgb, var(--blue-500) 25%, transparent);
+    --bg-secondary: var(--maroon-600);
+    --bg-secondary-faint: color-mix(in srgb, var(--maroon-600) 50%, transparent);
+    --bg-secondary-fade: color-mix(in srgb, var(--maroon-600) 25%, transparent);
+    --bg-success: var(--emerald-500);
+    --bg-success-faint: color-mix(in srgb, var(--emerald-500) 50%, transparent);
+    --bg-success-fade: color-mix(in srgb, var(--emerald-500) 25%, transparent);
+    --bg-warning: var(--yellow-500);
+    --bg-warning-faint: color-mix(in srgb, var(--yellow-500) 50%, transparent);
+    --bg-warning-fade: color-mix(in srgb, var(--yellow-500) 25%, transparent);
+    --bg-danger: var(--red-500);
+    --bg-danger-faint: color-mix(in srgb, var(--red-500) 50%, transparent);
+    --bg-danger-fade: color-mix(in srgb, var(--red-500) 25%, transparent);
+    --bg-primary-saturated: var(--soft-pink-200);
+    --bg-danger-saturated: var(--red-400);
+
+    /* border */
+    --border-plain: var(--zinc-50);
+    --border-subtle: var(--zinc-700);
+    --border-muted: var(--zinc-800);
+    --border-soft: var(--zinc-600);
+    --border-default: var(--zinc-500);
+    --border-inverse: var(--zinc-800);
+    --border-primary: var(--soft-pink-300);
+    --border-primary-faint: color-mix(in srgb, var(--soft-pink-300) 75%, transparent);
+    --border-primary-fade: color-mix(in srgb, var(--soft-pink-300) 25%, transparent);
+    --border-info: var(--blue-500);
+    --border-info-faint: var(--blue-900);
+    --border-info-fade: color-mix(in srgb, var(--blue-500) 25%, transparent);
+    --border-secondary: var(--maroon-600);
+    --border-secondary-faint: color-mix(in srgb, var(--maroon-600) 50%, transparent);
+    --border-secondary-fade: color-mix(in srgb, var(--maroon-600) 25%, transparent);
+    --border-success: var(--emerald-500);
+    --border-success-faint: color-mix(in srgb, var(--emerald-500) 50%, transparent);
+    --border-success-fade: color-mix(in srgb, var(--emerald-500) 25%, transparent);
+    --border-warning: var(--yellow-500);
+    --border-warning-faint: color-mix(in srgb, var(--yellow-500) 50%, transparent);
+    --border-warning-fade: color-mix(in srgb, var(--yellow-500) 25%, transparent);
+    --border-danger: var(--red-500);
+    --border-danger-faint: color-mix(in srgb, var(--red-500) 50%, transparent);
+    --border-danger-fade: color-mix(in srgb, var(--red-500) 25%, transparent);
+
+    /* text */
+    --text-plain: var(--zinc-50);
+    --text-subtle: var(--zinc-500);
+    --text-muted: var(--zinc-400);
+    --text-soft: var(--zinc-300);
+    --text-default: var(--zinc-200);
+    --text-inverse: var(--zinc-800);
+    --text-primary: var(--soft-pink-300);
+    --text-primary-faint: color-mix(in srgb, var(--soft-pink-300) 75%, transparent);
+    --text-primary-fade: color-mix(in srgb, var(--soft-pink-300) 25%, transparent);
+    --text-info: var(--blue-500);
+    --text-info-faint: var(--blue-900);
+    --text-info-fade: color-mix(in srgb, var(--blue-500) 25%, transparent);
+    --text-secondary: var(--maroon-600);
+    --text-secondary-faint: color-mix(in srgb, var(--maroon-600) 50%, transparent);
+    --text-secondary-fade: color-mix(in srgb, var(--maroon-600) 25%, transparent);
+    --text-success: var(--emerald-500);
+    --text-success-faint: color-mix(in srgb, var(--emerald-500) 50%, transparent);
+    --text-success-fade: color-mix(in srgb, var(--emerald-500) 25%, transparent);
+    --text-warning: var(--yellow-500);
+    --text-warning-faint: color-mix(in srgb, var(--yellow-500) 50%, transparent);
+    --text-warning-fade: color-mix(in srgb, var(--yellow-500) 25%, transparent);
+    --text-danger: var(--red-500);
+    --text-danger-faint: color-mix(in srgb, var(--red-500) 50%, transparent);
+    --text-danger-fade: color-mix(in srgb, var(--red-500) 25%, transparent);
+
+    /* Background aliases */
+    --background-plain: var(--bg-plain);
+    --background-subtle: var(--bg-subtle);
+    --background-muted: var(--bg-muted);
+    --background-soft: var(--bg-soft);
+    --background-default: var(--bg-default);
+    --background-inverse: var(--bg-inverse);
+    --background-elevated: var(--bg-elevated);
+    --background-overlay: var(--bg-overlay);
+    --background-primary: var(--bg-primary);
+    --background-primary-saturated: var(--bg-primary-saturated);
+    --background-primary-faint: var(--bg-primary-faint);
+    --background-primary-fade: var(--bg-primary-fade);
+    --background-info: var(--bg-info);
+    --background-info-faint: var(--bg-info-faint);
+    --background-info-fade: var(--bg-info-fade);
+    --background-secondary: var(--bg-secondary);
+    --background-secondary-faint: var(--bg-secondary-faint);
+    --background-secondary-fade: var(--bg-secondary-fade);
+    --background-success: var(--bg-success);
+    --background-success-faint: var(--bg-success-faint);
+    --background-success-fade: var(--bg-success-fade);
+    --background-warning: var(--bg-warning);
+    --background-warning-faint: var(--bg-warning-faint);
+    --background-warning-fade: var(--bg-warning-fade);
+    --background-danger: var(--bg-danger);
+    --background-danger-saturated: var(--bg-danger-saturated);
+    --background-danger-faint: var(--bg-danger-faint);
+    --background-danger-fade: var(--bg-danger-fade);
+
+    --shadow-subtle: 0 4px 10px rgb(0 0 0 / 7%);
+    --shadow-subtle-lg: 0 4px 18px rgb(0 0 0 / 7%);
+    --shadow-subtle-sm: 0 2px 5px rgb(0 0 0 / 7%);
+    --shadow-soft: 0 4px 10px rgb(0 0 0 / 10%);
+    --shadow-soft-lg: 0 4px 18px rgb(0 0 0 / 10%);
+    --shadow-soft-sm: 0 2px 5px rgb(0 0 0 / 10%);
+    --ring-default: #473036;
+    --ring-danger: #45282c;
   }
+}
+
+.light, [data-theme="light"] {
+  color-scheme: light;
+  --background: #ffffff;
+  --foreground: var(--zinc-800);
+  /* Semantic Colors */
+
+  /* Background */
+  --bg-plain: #ffffff;
+  --bg-subtle: var(--zinc-50);
+  --bg-muted: var(--zinc-100);
+  --bg-soft: var(--zinc-200);
+  --bg-default: var(--zinc-500);
+  --bg-inverse: var(--zinc-800);
+  --bg-elevated: rgb(0 0 0 / 0.2);
+  --bg-overlay: rgb(0 0 0 / 0.5);
+
+  --bg-primary: var(--maroon-800);
+  --bg-primary-saturated: var(--maroon-700);
+  --bg-primary-faint: var(--maroon-100);
+  --bg-primary-fade: var(--maroon-50);
+
+  --bg-info: var(--blue-600);
+  --bg-info-faint: var(--blue-100);
+  --bg-info-fade: var(--blue-50);
+
+  --bg-secondary: var(--soft-pink-400);
+  --bg-secondary-faint: var(--soft-pink-100);
+  --bg-secondary-fade: var(--soft-pink-50);
+
+  --bg-success: var(--emerald-500);
+  --bg-success-faint: var(--emerald-100);
+  --bg-success-fade: var(--emerald-50);
+
+  --bg-warning: var(--yellow-400);
+  --bg-warning-faint: var(--yellow-100);
+  --bg-warning-fade: var(--yellow-50);
+
+  --bg-danger: var(--red-600);
+  --bg-danger-saturated: var(--red-700);
+  --bg-danger-faint: var(--red-100);
+  --bg-danger-fade: var(--red-50);
+
+  /* Background Aliases */
+  --background-plain: var(--bg-plain);
+  --background-subtle: var(--bg-subtle);
+  --background-muted: var(--bg-muted);
+  --background-soft: var(--bg-soft);
+  --background-default: var(--bg-default);
+  --background-inverse: var(--bg-inverse);
+  --background-elevated: var(--bg-elevated);
+  --background-overlay: var(--bg-overlay);
+
+  --background-primary: var(--bg-primary);
+  --background-primary-saturated: var(--bg-primary-saturated);
+  --background-primary-faint: var(--bg-primary-faint);
+  --background-primary-fade: var(--bg-primary-fade);
+
+  --background-info: var(--bg-info);
+  --background-info-faint: var(--bg-info-faint);
+  --background-info-fade: var(--bg-info-fade);
+
+  --background-secondary: var(--bg-secondary);
+  --background-secondary-faint: var(--bg-secondary-faint);
+  --background-secondary-fade: var(--bg-secondary-fade);
+
+  --background-success: var(--bg-success);
+  --background-success-faint: var(--bg-success-faint);
+  --background-success-fade: var(--bg-success-fade);
+
+  --background-warning: var(--bg-warning);
+  --background-warning-faint: var(--bg-warning-faint);
+  --background-warning-fade: var(--bg-warning-fade);
+
+  --background-danger: var(--bg-danger);
+  --background-danger-saturated: var(--bg-danger-saturated);
+  --background-danger-faint: var(--bg-danger-faint);
+  --background-danger-fade: var(--bg-danger-fade);
+
+  /* Border */
+  --border-plain: var(--zinc-800);
+  --border-subtle: var(--zinc-100);
+  --border-muted: var(--zinc-200);
+  --border-soft: var(--zinc-300);
+  --border-default: var(--zinc-400);
+  --border-inverse: #ffffff;
+
+  --border-primary: var(--maroon-800);
+  --border-primary-faint: var(--maroon-100);
+  --border-primary-fade: var(--maroon-50);
+
+  --border-info: var(--blue-600);
+  --border-info-faint: var(--blue-100);
+  --border-info-fade: var(--blue-50);
+
+  --border-secondary: var(--soft-pink-400);
+  --border-secondary-faint: var(--soft-pink-100);
+  --border-secondary-fade: var(--soft-pink-50);
+
+  --border-success: var(--emerald-500);
+  --border-success-faint: var(--emerald-100);
+  --border-success-fade: var(--emerald-50);
+
+  --border-warning: var(--yellow-400);
+  --border-warning-faint: var(--yellow-100);
+  --border-warning-fade: var(--yellow-50);
+
+  --border-danger: var(--red-600);
+  --border-danger-faint: var(--red-100);
+  --border-danger-fade: var(--red-50);
+  /* Text */
+  --text-plain: var(--zinc-800);
+  --text-subtle: var(--zinc-300);
+  --text-muted: var(--zinc-400);
+  --text-soft: var(--zinc-500);
+  --text-default: var(--zinc-600);
+  --text-inverse: #ffffff;
+  --text-primary: var(--maroon-800);
+  --text-primary-faint: var(--maroon-100);
+  --text-primary-fade: var(--maroon-50);
+  --text-info: var(--blue-600);
+  --text-info-faint: var(--blue-100);
+  --text-info-fade: var(--blue-50);
+  --text-secondary: var(--soft-pink-400);
+  --text-secondary-faint: var(--soft-pink-100);
+  --text-secondary-fade: var(--soft-pink-50);
+  --text-success: var(--emerald-500);
+  --text-success-faint: var(--emerald-100);
+  --text-success-fade: var(--emerald-50);
+  --text-warning: var(--yellow-400);
+  --text-warning-faint: var(--yellow-100);
+  --text-warning-fade: var(--yellow-50);
+  --text-danger: var(--red-600);
+  --text-danger-faint: var(--red-100);
+  --text-danger-fade: var(--red-50);
+
+  /* Shadows and focus rings */
+  --shadow-subtle: 0 4px 10px rgb(0 0 0 / 7%);
+  --shadow-subtle-lg: 0 4px 18px rgb(0 0 0 / 7%);
+  --shadow-subtle-sm: 0 2px 5px rgb(0 0 0 / 7%);
+  --shadow-soft: 0 4px 10px rgb(0 0 0 / 10%);
+  --shadow-soft-lg: 0 4px 18px rgb(0 0 0 / 10%);
+  --shadow-soft-sm: 0 2px 5px rgb(0 0 0 / 10%);
+  --ring-default: var(--maroon-50);
+  --ring-danger: var(--red-100);
+
+}
+
+.dark, [data-theme="dark"] {
+  color-scheme: dark;
+  --background: #0a0a0a;
+  --foreground: var(--zinc-50);
+
+  /* bg */
+  --bg-plain: var(--zinc-700);
+  --bg-subtle: var(--zinc-800);
+  --bg-muted: var(--zinc-900);
+  --bg-soft: var(--zinc-700);
+  --bg-default: var(--zinc-600);
+  --bg-inverse: var(--zinc-50);
+  --bg-primary: var(--soft-pink-300);
+  --bg-primary-faint: color-mix(in srgb, var(--soft-pink-300) 75%, transparent);
+  --bg-primary-fade: color-mix(in srgb, var(--soft-pink-300) 25%, transparent);
+  --bg-info: var(--blue-500);
+  --bg-info-faint: var(--blue-900);
+  --bg-info-fade: color-mix(in srgb, var(--blue-500) 25%, transparent);
+  --bg-secondary: var(--maroon-600);
+  --bg-secondary-faint: color-mix(in srgb, var(--maroon-600) 50%, transparent);
+  --bg-secondary-fade: color-mix(in srgb, var(--maroon-600) 25%, transparent);
+  --bg-success: var(--emerald-500);
+  --bg-success-faint: color-mix(in srgb, var(--emerald-500) 50%, transparent);
+  --bg-success-fade: color-mix(in srgb, var(--emerald-500) 25%, transparent);
+  --bg-warning: var(--yellow-500);
+  --bg-warning-faint: color-mix(in srgb, var(--yellow-500) 50%, transparent);
+  --bg-warning-fade: color-mix(in srgb, var(--yellow-500) 25%, transparent);
+  --bg-danger: var(--red-500);
+  --bg-danger-faint: color-mix(in srgb, var(--red-500) 50%, transparent);
+  --bg-danger-fade: color-mix(in srgb, var(--red-500) 25%, transparent);
+  --bg-primary-saturated: var(--soft-pink-200);
+  --bg-danger-saturated: var(--red-400);
+
+  /* border */
+  --border-plain: var(--zinc-50);
+  --border-subtle: var(--zinc-700);
+  --border-muted: var(--zinc-800);
+  --border-soft: var(--zinc-600);
+  --border-default: var(--zinc-500);
+  --border-inverse: var(--zinc-800);
+  --border-primary: var(--soft-pink-300);
+  --border-primary-faint: color-mix(in srgb, var(--soft-pink-300) 75%, transparent);
+  --border-primary-fade: color-mix(in srgb, var(--soft-pink-300) 25%, transparent);
+  --border-info: var(--blue-500);
+  --border-info-faint: var(--blue-900);
+  --border-info-fade: color-mix(in srgb, var(--blue-500) 25%, transparent);
+  --border-secondary: var(--maroon-600);
+  --border-secondary-faint: color-mix(in srgb, var(--maroon-600) 50%, transparent);
+  --border-secondary-fade: color-mix(in srgb, var(--maroon-600) 25%, transparent);
+  --border-success: var(--emerald-500);
+  --border-success-faint: color-mix(in srgb, var(--emerald-500) 50%, transparent);
+  --border-success-fade: color-mix(in srgb, var(--emerald-500) 25%, transparent);
+  --border-warning: var(--yellow-500);
+  --border-warning-faint: color-mix(in srgb, var(--yellow-500) 50%, transparent);
+  --border-warning-fade: color-mix(in srgb, var(--yellow-500) 25%, transparent);
+  --border-danger: var(--red-500);
+  --border-danger-faint: color-mix(in srgb, var(--red-500) 50%, transparent);
+  --border-danger-fade: color-mix(in srgb, var(--red-500) 25%, transparent);
+
+  /* text */
+  --text-plain: var(--zinc-50);
+  --text-subtle: var(--zinc-500);
+  --text-muted: var(--zinc-400);
+  --text-soft: var(--zinc-300);
+  --text-default: var(--zinc-200);
+  --text-inverse: var(--zinc-800);
+  --text-primary: var(--soft-pink-300);
+  --text-primary-faint: color-mix(in srgb, var(--soft-pink-300) 75%, transparent);
+  --text-primary-fade: color-mix(in srgb, var(--soft-pink-300) 25%, transparent);
+  --text-info: var(--blue-500);
+  --text-info-faint: var(--blue-900);
+  --text-info-fade: color-mix(in srgb, var(--blue-500) 25%, transparent);
+  --text-secondary: var(--maroon-600);
+  --text-secondary-faint: color-mix(in srgb, var(--maroon-600) 50%, transparent);
+  --text-secondary-fade: color-mix(in srgb, var(--maroon-600) 25%, transparent);
+  --text-success: var(--emerald-500);
+  --text-success-faint: color-mix(in srgb, var(--emerald-500) 50%, transparent);
+  --text-success-fade: color-mix(in srgb, var(--emerald-500) 25%, transparent);
+  --text-warning: var(--yellow-500);
+  --text-warning-faint: color-mix(in srgb, var(--yellow-500) 50%, transparent);
+  --text-warning-fade: color-mix(in srgb, var(--yellow-500) 25%, transparent);
+  --text-danger: var(--red-500);
+  --text-danger-faint: color-mix(in srgb, var(--red-500) 50%, transparent);
+  --text-danger-fade: color-mix(in srgb, var(--red-500) 25%, transparent);
+
+  /* Background aliases */
+  --background-plain: var(--bg-plain);
+  --background-subtle: var(--bg-subtle);
+  --background-muted: var(--bg-muted);
+  --background-soft: var(--bg-soft);
+  --background-default: var(--bg-default);
+  --background-inverse: var(--bg-inverse);
+  --background-elevated: var(--bg-elevated);
+  --background-overlay: var(--bg-overlay);
+  --background-primary: var(--bg-primary);
+  --background-primary-saturated: var(--bg-primary-saturated);
+  --background-primary-faint: var(--bg-primary-faint);
+  --background-primary-fade: var(--bg-primary-fade);
+  --background-info: var(--bg-info);
+  --background-info-faint: var(--bg-info-faint);
+  --background-info-fade: var(--bg-info-fade);
+  --background-secondary: var(--bg-secondary);
+  --background-secondary-faint: var(--bg-secondary-faint);
+  --background-secondary-fade: var(--bg-secondary-fade);
+  --background-success: var(--bg-success);
+  --background-success-faint: var(--bg-success-faint);
+  --background-success-fade: var(--bg-success-fade);
+  --background-warning: var(--bg-warning);
+  --background-warning-faint: var(--bg-warning-faint);
+  --background-warning-fade: var(--bg-warning-fade);
+  --background-danger: var(--bg-danger);
+  --background-danger-saturated: var(--bg-danger-saturated);
+  --background-danger-faint: var(--bg-danger-faint);
+  --background-danger-fade: var(--bg-danger-fade);
+
+  --shadow-subtle: 0 4px 10px rgb(0 0 0 / 7%);
+  --shadow-subtle-lg: 0 4px 18px rgb(0 0 0 / 7%);
+  --shadow-subtle-sm: 0 2px 5px rgb(0 0 0 / 7%);
+  --shadow-soft: 0 4px 10px rgb(0 0 0 / 10%);
+  --shadow-soft-lg: 0 4px 18px rgb(0 0 0 / 10%);
+  --shadow-soft-sm: 0 2px 5px rgb(0 0 0 / 10%);
+  --ring-default: #473036;
+  --ring-danger: #45282c;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
-}
-
-/* Semantic theme overrides shared by components. */
-@media (prefers-color-scheme: dark) {
-  :root {
-  --foreground: var(--zinc-50);
-  --bg-muted: var(--zinc-900);
-  --bg-default: var(--zinc-300);
-  --bg-success-fade: var(--emerald-950);
-  --bg-danger-fade: var(--red-950);
-  --bg-warning-fade: var(--yellow-950);
-  --border-soft: var(--zinc-700);
-  }
-}
-
-.light, [data-theme="light"] {
-  --foreground: var(--zinc-800);
-  --bg-muted: var(--zinc-100);
-  --bg-default: var(--zinc-500);
-  --bg-success-fade: var(--emerald-50);
-  --bg-danger-fade: var(--red-50);
-  --bg-warning-fade: var(--yellow-50);
-  --border-soft: var(--zinc-300);
-}
-
-.dark, [data-theme="dark"] {
-  --foreground: var(--zinc-50);
-  --bg-muted: var(--zinc-900);
-  --bg-default: var(--zinc-300);
-  --bg-success-fade: var(--emerald-950);
-  --bg-danger-fade: var(--red-950);
-  --bg-warning-fade: var(--yellow-950);
-  --border-soft: var(--zinc-700);
 }
