@@ -34,7 +34,7 @@ export default async function RootLayout({
     notFound();
   }
 
-  // Direction for HTML 
+  // Direction for HTML
   const dir = locale === "ar" ? "rtl" : "ltr";
 
   return (
@@ -43,9 +43,9 @@ export default async function RootLayout({
       dir={dir}
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <NextIntlClientProvider>
-        <body className="min-h-full flex flex-col">{children}</body>
-      </NextIntlClientProvider>
+      <body className="min-h-full flex flex-col">
+        <NextIntlClientProvider>{children}</NextIntlClientProvider>
+      </body>
     </html>
   );
 }
