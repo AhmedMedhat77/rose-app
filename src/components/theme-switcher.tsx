@@ -13,10 +13,12 @@ export function ThemeSwitcher() {
       <select
         value={theme}
         onChange={(event) => setTheme(parseTheme(event.target.value))}
-        className="rounded-md border border-input bg-background px-3 py-2 text-foreground focus-visible:outline-2 focus-visible:outline-primary"
+        className="border-input bg-background text-foreground focus-visible:outline-primary rounded-md border px-3 py-2 focus-visible:outline-2"
       >
         {themeModes.map((mode) => (
-          <option key={mode} value={mode}>{t(mode)}</option>
+          <option key={mode} value={mode}>
+            {t(mode)}
+          </option>
         ))}
       </select>
     </label>

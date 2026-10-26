@@ -21,7 +21,7 @@ export function LocaleSwitcher() {
           lang={nextLocale}
           dir={nextLocale === "ar" ? "rtl" : "ltr"}
           aria-current={locale === nextLocale ? "page" : undefined}
-          className={`rounded-sm px-2 py-1 text-primary underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-ring ${nextLocale === "ar" ? "font-arabic" : "font-english"}`}
+          className={`text-primary focus-visible:outline-ring rounded-sm px-2 py-1 underline-offset-4 hover:underline focus-visible:outline-2 ${nextLocale === "ar" ? "font-arabic" : "font-english"}`}
         >
           {localeNames[nextLocale]}
         </Link>

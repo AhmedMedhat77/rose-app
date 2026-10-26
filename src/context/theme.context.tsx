@@ -15,7 +15,9 @@ type ResolvedTheme = "light" | "dark";
 const themeStorageKey = "rose-theme";
 
 export function parseTheme(value: string | null): ThemeMode {
-  return themeModes.includes(value as ThemeMode) ? (value as ThemeMode) : "system";
+  return themeModes.includes(value as ThemeMode)
+    ? (value as ThemeMode)
+    : "system";
 }
 
 type ThemeContextValue = {
@@ -38,7 +40,11 @@ type ThemeAction =
 function themeReducer(state: ThemeState, action: ThemeAction): ThemeState {
   switch (action.type) {
     case "initialize":
-      return { theme: action.theme, systemTheme: action.systemTheme, initialized: true };
+      return {
+        theme: action.theme,
+        systemTheme: action.systemTheme,
+        initialized: true,
+      };
     case "set-theme":
       return { ...state, theme: action.theme };
     case "system-change":
@@ -55,7 +61,8 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     systemTheme: "light",
     initialized: false,
   });
-  const resolvedTheme = state.theme === "system" ? state.systemTheme : state.theme;
+  const resolvedTheme =
+    state.theme === "system" ? state.systemTheme : state.theme;
 
   // =================== SETTERS ===================
   const setTheme = useCallback((theme: ThemeMode) => {
@@ -67,7 +74,6 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
       // Theme selection remains available when browser storage is blocked.
     }
   }, []);
-
 
   // =================== EFFECTS ===================
   useEffect(() => {
@@ -85,7 +91,10 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     });
 
     const onSystemChange = (event: MediaQueryListEvent) => {
-      dispatch({ type: "system-change", systemTheme: event.matches ? "dark" : "light" });
+      dispatch({
+        type: "system-change",
+        systemTheme: event.matches ? "dark" : "light",
+      });
     };
     const onStorage = (event: StorageEvent) => {
       try {
@@ -112,8 +121,6 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     root.classList.remove("light", "dark");
     root.classList.add(resolvedTheme);
   }, [state.initialized, resolvedTheme]);
-
-
 
   return (
     <ThemeContext value={{ theme: state.theme, resolvedTheme, setTheme }}>
