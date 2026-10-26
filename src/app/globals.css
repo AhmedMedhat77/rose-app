@@ -505,12 +505,23 @@
   --color-chart-3: var(--chart-3);
   --color-chart-4: var(--chart-4);
   --color-chart-5: var(--chart-5);
-  --font-sans: var(--font-geist-sans);
+  --font-sans: var(--font-body);
+  --font-english: var(--font-sarabun);
+  --font-arabic: var(--font-tajawal);
   --font-mono: var(--font-geist-mono);
   --radius-sm: 4px;
   --radius-md: var(--radius);
   --radius-lg: 8px;
   --radius-xl: 10px;
+}
+
+/* The lang attribute updates with locale navigation. */
+:root {
+  --font-body: var(--font-sarabun);
+}
+
+:root:lang(ar) {
+  --font-body: var(--font-tajawal);
 }
 
 @layer base {
@@ -520,6 +531,6 @@
 
   body {
     @apply bg-background text-foreground;
-    font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+    font-family: var(--font-body), Arial, Helvetica, sans-serif;
   }
 }

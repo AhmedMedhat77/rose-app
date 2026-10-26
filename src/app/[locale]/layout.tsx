@@ -1,19 +1,10 @@
 import type { Metadata } from "next";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
-import { Geist, Geist_Mono } from "next/font/google";
+import { geistMono, sarabun, tajawal } from "../fonts";
+import { LocaleSwitcher } from "@/components/locale-switcher";
 import { notFound } from "next/navigation";
 import { routing } from "../../i18n/routing";
 import "../globals.css";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 export const metadata: Metadata = {
   title: "Rose App",
@@ -41,10 +32,13 @@ export default async function RootLayout({
     <html
       lang={locale}
       dir={dir}
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${sarabun.variable} ${tajawal.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        <NextIntlClientProvider>{children}</NextIntlClientProvider>
+        <NextIntlClientProvider>
+          <LocaleSwitcher />
+          {children}
+        </NextIntlClientProvider>
       </body>
     </html>
   );
