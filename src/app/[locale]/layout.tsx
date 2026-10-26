@@ -1,9 +1,11 @@
+import { LocaleSwitcher } from "@/components/locale-switcher";
+import { ThemeSwitcher } from "@/components/theme-switcher";
+import { ThemeProvider } from "@/context/theme.context";
 import type { Metadata } from "next";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
-import { geistMono, sarabun, tajawal } from "../fonts";
-import { LocaleSwitcher } from "@/components/locale-switcher";
 import { notFound } from "next/navigation";
 import { routing } from "../../i18n/routing";
+import { geistMono, sarabun, tajawal } from "../fonts";
 import "../globals.css";
 
 export const metadata: Metadata = {
@@ -30,15 +32,21 @@ export default async function RootLayout({
 
   return (
     <html
+      suppressHydrationWarning
       lang={locale}
       dir={dir}
       className={`${sarabun.variable} ${tajawal.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        <NextIntlClientProvider>
-          <LocaleSwitcher />
-          {children}
-        </NextIntlClientProvider>
+        <ThemeProvider>
+          <NextIntlClientProvider>
+            <header className="flex flex-wrap items-center justify-between">
+              <LocaleSwitcher />
+              <ThemeSwitcher />
+            </header>
+            {children}
+          </NextIntlClientProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

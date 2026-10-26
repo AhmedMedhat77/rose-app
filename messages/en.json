@@ -1,4 +1,10 @@
 {
   "welcome": "welcome",
-  "language": "Language"
+  "language": "Language",
+  "theme": {
+    "label": "Theme",
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System"
+  }
 }
