@@ -13,9 +13,16 @@ Open [localhost:3000](http://localhost:3000). Routes support English (`/en`) and
 
 ```bash
 npm run lint
-npx tsc --noEmit
+npm run typecheck
+npm run format:check
+npm run check
 npm run build
 ```
+
+Run `npm run format` to format the project or `npm run lint:fix` to fix lint issues.
+`npm ci` installs Husky hooks through the `prepare` script. Before each commit,
+lint-staged fixes lint issues and formats staged files, then TypeScript checks
+the whole project. Any remaining errors block the commit.
 
 ## Structure
 
