@@ -40,7 +40,11 @@ A modern, high-performance web application built with **Next.js (App Router)**, 
     - [Navigation \& Routing (Critical Rule)](#navigation--routing-critical-rule)
       - [Switching Locales Programmatically](#switching-locales-programmatically)
     - [RTL (Right-to-Left) Layout Best Practices](#rtl-right-to-left-layout-best-practices)
-  - [Quality Checks \& Git Hooks](#quality-checks--git-hooks)
+  - [CI/CD & Git Pre-Commit Automation](#cicd--git-pre-commit-automation)
+    - [Pre-Commit Hook Verification](#pre-commit-hook-verification)
+    - [GitHub Actions CI Pipeline](#github-actions-ci-pipeline)
+    - [GitHub Actions CD Pipeline](#github-actions-cd-pipeline)
+    - [Troubleshooting & Fixing Failures](#troubleshooting--fixing-failures)
 
 ---
 
@@ -553,16 +557,91 @@ When writing styling for bilingual (LTR/RTL) support:
 
 ---
 
-## Quality Checks & Git Hooks
+## CI/CD & Git Pre-Commit Automation
 
-This project enforces strict code quality through pre-commit verification:
+This project implements a multi-tiered validation pipeline:
+1. **Local Pre-Commit Hook (Husky + lint-staged)**: Runs before every `git commit` to catch linting, formatting, type, and build issues on the developer's machine before code leaves local branches.
+2. **GitHub Actions CI (`.github/workflows/ci.yml`)**: Automatically triggered on pushes and pull requests across multiple branches to validate the codebase in clean isolated Ubuntu containers.
+3. **GitHub Actions CD (`.github/workflows/cd.yml`)**: Compiles and verifies production build artifacts on pushes to `main` or release tags.
 
-- **ESLint 9**: Catches syntax errors, unused imports, and Next.js / React best practice violations.
-- **Prettier**: Guarantees consistent formatting and automatically sorts Tailwind CSS classes via `prettier-plugin-tailwindcss`.
-- **TypeScript `tsc --noEmit`**: Typechecks the entire codebase before any commit can succeed.
-- **Husky & lint-staged**: Automatically runs checks on staged files during `git commit`. If any error remains unresolved, the commit is safely rejected.
+---
+
+### Pre-Commit Hook Verification
+
+When you run `git commit`, Husky automatically executes `.husky/pre-commit`:
+
+```
+git commit -m "feat: add feature"
+   │
+   ├── 1️⃣ lint-staged: Auto-formats and auto-fixes staged files (ESLint + Prettier)
+   │     └─ ❌ Fails? Shows file errors, halts commit.
+   │
+   ├── 2️⃣ npm run typecheck: Next.js typegen + TypeScript full-project validation
+   │     └─ ❌ Fails? Shows TypeScript errors, halts commit.
+   │
+   └── 3️⃣ npm run build: Full production build compilation
+         └─ ❌ Fails? Shows Next.js build errors, halts commit.
+   │
+   └── ✅ All checks passed -> Commit created!
+```
+
+If any check fails, the pre-commit script aborts the commit and outputs actionable error messages:
+- **Lint/Format failures**: Run `npm run lint:fix` and `npm run format`.
+- **Type errors**: Run `npm run typecheck` to view exact compiler errors.
+- **Build errors**: Run `npm run build` to view broken routes or SSR issues.
+
+---
+
+### GitHub Actions CI Pipeline
+
+The CI workflow is defined in [`.github/workflows/ci.yml`](file:///Users/max/Developer/Nextjs/rose-app/.github/workflows/ci.yml).
+
+- **Triggers**:
+  - Pushes to `main`, `master`, `develop`, `feat/**`, `fix/**`, `chore/**`
+  - Pull Requests targeting `main`, `master`, `develop`
+  - Manual trigger via `workflow_dispatch`
+- **Features**:
+  - **Concurrency Control**: Automatically cancels older in-progress runs when a branch/PR receives new commits.
+  - **Dependency Caching**: Caches `~/.npm` and Next.js compiler cache (`.next/cache`) across runs for sub-minute build times.
+  - **Explicit Validation Steps**:
+    1. Prettier check (`npm run format:check`)
+    2. ESLint analysis (`npm run lint`)
+    3. TypeScript verification (`npm run typecheck`)
+    4. Next.js production build (`npm run build`)
+  - **Detailed Step Summary**: Posts a formatted Markdown status report table directly into GitHub's Action summary tab showing each check's individual result.
+
+---
+
+### GitHub Actions CD Pipeline
+
+The CD workflow is defined in [`.github/workflows/cd.yml`](file:///Users/max/Developer/Nextjs/rose-app/.github/workflows/cd.yml).
+
+- **Triggers**: Pushes to `main` or release tags (`v*`).
+- **Steps**:
+  1. Checks out repository and sets up Node 20.
+  2. Restores Next.js build cache.
+  3. Executes production build with `NODE_ENV=production`.
+  4. Bundles and uploads the production build artifact (`.next/`, `public/`, `package.json`).
+
+---
+
+### Troubleshooting & Fixing Failures
+
+To run the exact checks locally before committing or creating a pull request:
 
 ```bash
-# Test the full check suite locally before opening a pull request
-npm run check
+# 1. Run all checks locally (format, lint, types, build)
+npm run check:ci
+
+# 2. Fix formatting issues automatically
+npm run format
+
+# 3. Fix auto-fixable ESLint issues
+npm run lint:fix
+
+# 4. View TypeScript type issues
+npm run typecheck
+
+# 5. Test production build locally
+npm run build
 ```
