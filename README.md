@@ -560,6 +560,7 @@ When writing styling for bilingual (LTR/RTL) support:
 ## CI/CD & Git Pre-Commit Automation
 
 This project implements a multi-tiered validation pipeline:
+
 1. **Local Pre-Commit Hook (Husky + lint-staged)**: Runs before every `git commit` to catch linting, formatting, type, and build issues on the developer's machine before code leaves local branches.
 2. **GitHub Actions CI (`.github/workflows/ci.yml`)**: Automatically triggered on pushes and pull requests across multiple branches to validate the codebase in clean isolated Ubuntu containers.
 3. **GitHub Actions CD (`.github/workflows/cd.yml`)**: Compiles and verifies production build artifacts on pushes to `main` or release tags.
@@ -586,6 +587,7 @@ git commit -m "feat: add feature"
 ```
 
 If any check fails, the pre-commit script aborts the commit and outputs actionable error messages:
+
 - **Lint/Format failures**: Run `npm run lint:fix` and `npm run format`.
 - **Type errors**: Run `npm run typecheck` to view exact compiler errors.
 - **Build errors**: Run `npm run build` to view broken routes or SSR issues.

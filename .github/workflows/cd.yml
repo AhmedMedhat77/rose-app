@@ -5,7 +5,7 @@ on:
     branches:
       - main
     tags:
-      - 'v*'
+      - "v*"
   workflow_dispatch:
 
 concurrency:
@@ -27,7 +27,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 26
-          cache: 'npm'
+          cache: "npm"
 
       - name: 📦 Cache Next.js build output
         uses: actions/cache@v4

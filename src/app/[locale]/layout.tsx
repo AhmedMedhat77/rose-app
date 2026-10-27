@@ -11,7 +11,7 @@ import "../globals.css";
 export const metadata: Metadata = {
   title: "Rose App",
   description: "Rose Application",
-  icons:'../favicon.ico'
+  icons: "../favicon.ico",
 };
 
 export function generateStaticParams() {

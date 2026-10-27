@@ -6,9 +6,9 @@ on:
       - main
       - master
       - develop
-      - 'chore/**'
-      - 'feat/**'
-      - 'fix/**'
+      - "chore/**"
+      - "feat/**"
+      - "fix/**"
   pull_request:
     branches:
       - main
@@ -35,7 +35,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 26
-          cache: 'npm'
+          cache: "npm"
 
       - name: 📦 Cache Next.js build output
         uses: actions/cache@v4
