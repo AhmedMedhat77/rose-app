@@ -1,0 +1,17 @@
+{
+    "welcome": "مرحبا",
+    "language": "اللغة",
+    "theme": {
+        "label": "السمة",
+        "light": "فاتح",
+        "dark": "داكن",
+        "system": "النظام"
+    },
+    "toast": {
+        "informative": "رسالة توضيحية",
+        "successful": "عملية ناجحة",
+        "unsuccessful": "عملية غير ناجحة",
+        "close": "إغلاق الإشعار",
+        "notifications": "الإشعارات"
+    }
+}

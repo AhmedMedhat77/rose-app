@@ -29,7 +29,7 @@ function TabsList({
     <TabsPrimitive.List
       data-slot="tabs-list"
       className={cn("group/tabs-list inline-flex w-fit items-center justify-center text-muted-foreground group-data-horizontal/tabs:h-11 group-data-vertical/tabs:h-fit group-data-horizontal/tabs:w-81 group-data-vertical/tabs:w-fit group-data-vertical/tabs:flex-col",
-       className
+        className
       )}
       {...props}
     />
@@ -41,14 +41,15 @@ function TabsTrigger({ className, ...props }: TabsPrimitive.Tab.Props) {
     <TabsPrimitive.Tab
       data-slot="tabs-trigger"
       className={cn(
-        `relative inline-flex h-full flex-1 items-center justify-center gap-1.5 px-1.5 py-0.5 text-sm font-medium whitespace-nowrap transition-all group-data-vertical/tabs:w-full group-data-vertical/tabs:justify-start disabled:pointer-events-none has-data-[icon=inline-end]:pr-1 has-data-[icon=inline-start]:pl-1 aria-disabled:pointer-events-none [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4
-        rounded-none first:rounded-s-lg last:rounded-e-lg
-        border border-border-soft first:border-e-0 last:border-s-0 bg-bg-plain text-text-plain
-        data-active:bg-bg-primary data-active:text-text-inverse data-active:border-transparent
-        data-active:hover:bg-bg-primary-saturated
-        z-[1] data-active:focus-visible:z-0 data-active:focus-visible:ring-2 data-active:focus-visible:ring-ring-default
-        focus-visible:outline-none
-        disabled:data-active:bg-bg-muted disabled:data-active:text-text-muted`,
+        "relative inline-flex h-full flex-1 items-center justify-center gap-1.5 px-1.5 py-0.5 text-sm font-medium whitespace-nowrap transition-all group-data-vertical/tabs:w-full group-data-vertical/tabs:justify-start disabled:pointer-events-none has-data-[icon=inline-end]:pr-1 has-data-[icon=inline-start]:pl-1 aria-disabled:pointer-events-none [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+        "rounded-none first:rounded-s-lg last:rounded-e-lg",
+        "border border-border-soft first:border-e-0 last:border-s-0 bg-bg-plain text-text-plain",
+        // Hovered, Focused, Disabled, and Active states styles
+        "data-active:bg-bg-primary data-active:text-text-inverse data-active:border-transparent",
+        "data-active:hover:bg-bg-primary-saturated",
+        "z-[1] data-active:focus-visible:z-0 data-active:focus-visible:ring-2 data-active:focus-visible:ring-ring-default",
+        "data-active:focus-visible:outline-none",
+        "data-disabled:data-active:bg-bg-muted data-disabled:data-active:text-text-muted",
         className
       )}
       {...props}
