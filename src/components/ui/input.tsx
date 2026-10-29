@@ -5,6 +5,8 @@ import { cn } from "cn";
 import { Eye, EyeOff, Search, Upload } from "lucide-react";
 import { Button } from "@base-ui/react";
 
+import PhoneInput from "react-phone-input-2";
+import "react-phone-input-2/lib/style.css";
 const defaultInputStyle = cn(
   "rounded-lg",
   "border",
@@ -196,4 +198,19 @@ function Input({
   );
 }
 
-export { Input, inputVariants };
+function PhoneNumberInput() {
+  return (
+    <div className="p-1.25">
+      <PhoneInput
+        country="us"
+        placeholder="Enter phone number"
+        containerClass="!w-full"
+        inputClass="!w-20.4 !h-10 !pl-12 !pr-3 !text-sm !rounded-md !border !border-input !bg-background !text-foreground focus:!border-ring focus:!outline-none focus:!ring-[3px] focus:!ring-ring/50"
+        buttonClass="!h-10 !rounded-l-md !border-0 !border-r !border-input !bg-transparent hover:!bg-accent"
+        dropdownClass="!bg-background !text-foreground"
+      />
+    </div>
+  );
+}
+
+export { Input, inputVariants, PhoneNumberInput };

@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import { Input, PhoneNumberInput } from "@/components/ui/input";
 import {
   InputOTP,
   InputOTPGroup,
@@ -14,7 +14,15 @@ export default async function HomePage() {
       {t("welcome")}
       <Button>Primary</Button>
 
-      <Input label="Name" variant="disabled" />
+      <Input label="default" variant="default" />
+      <Input label="password" variant="password" />
+      <Input label="error" variant="error" />
+      <Input label="number" variant="number" />
+      <Input label="upload" variant="upload" />
+      <Input label="phoneNumber" variant="phoneNumber" />
+      <Input label="disabled" variant="disabled" />
+
+      <PhoneNumberInput />
 
       <div>
         <InputOTP maxLength={6}>
