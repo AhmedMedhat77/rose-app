@@ -7,10 +7,10 @@ const badgeVariants = cva(
   [
     // flex
     "group/badge inline-flex gap-2.5 h-4 w-fit shrink-0 items-center justify-center  overflow-hidden",
-    // birder
-    "rounded-full border border-transparent px-2 py-1",
+    // border and padding
+    "rounded-full border border-transparent px-2 py-2",
     // text
-    "text-xs leading-3 font-medium font-english whitespace-nowrap",
+    "text-xs  font-medium font-english whitespace-nowrap",
     // transition focus outline
     "transition-colors outline-none focus-visible:ring-3 focus-visible:ring-ring/50 has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-1.5 [&>svg]:pointer-events-none [&>svg]:size-3!",
   ],

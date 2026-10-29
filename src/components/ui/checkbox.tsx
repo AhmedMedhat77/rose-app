@@ -29,7 +29,7 @@ function Checkbox({
       }
       className={cn(
         // base
-        "peer border-border-primary bg-bg-plain relative flex size-5 shrink-0 cursor-pointer items-center justify-center rounded-sm border transition-all outline-none",
+        "peer border-border-primary bg-bg-plain relative flex size-5 shrink-0 cursor-pointer items-center justify-center rounded-lg border transition-all outline-none",
         // checked
         "data-checked:bg-bg-primary data-checked:text-text-inverse",
         // hover + focus:

@@ -31,7 +31,7 @@ const buttonVariants = cva(
           // hover
           "hover:bg-bg-primary-saturated",
           // disabeld
-          "disabled:bg-bg-soft dark:disabled:bg-bg-muted disabled:text-text-muted",
+          "disabled:bg-bg-soft disabled:border-transparent dark:disabled:bg-bg-muted disabled:text-text-muted",
         ),
         secondary: cn(
           // color
@@ -39,7 +39,7 @@ const buttonVariants = cva(
           // hover
           "hover:bg-bg-primary-faint",
           // disabeld
-          "disabled:bg-bg-soft dark:disabled:bg-bg-muted disabled:text-text-muted",
+          "disabled:bg-bg-soft disabled:border-transparent dark:disabled:bg-bg-muted disabled:text-text-muted",
         ),
         outline: cn(
           // color
@@ -47,7 +47,7 @@ const buttonVariants = cva(
           // hover
           "hover:bg-bg-primary-fade",
           // disabeld
-          "disabled:bg-bg-soft dark:disabled:bg-bg-muted disabled:text-text-muted",
+          "disabled:bg-bg-soft disabled:border-transparent dark:disabled:bg-bg-muted disabled:text-text-muted",
         ),
         subtle: cn(
           // color
@@ -55,7 +55,7 @@ const buttonVariants = cva(
           // hover
           "hover:bg-bg-soft dark:hover:bg-bg-subtle dark:hover:border-border-primary",
           // disabeld
-          "disabled:bg-bg-soft dark:disabled:bg-bg-muted disabled:text-text-muted",
+          "disabled:bg-bg-soft disabled:border-transparent dark:disabled:bg-bg-muted disabled:text-text-muted",
         ),
         ghost: cn(
           // color
@@ -63,7 +63,7 @@ const buttonVariants = cva(
           // hover
           "hover:bg-bg-soft",
           // disabeld
-          "disabled:bg-bg-soft dark:disabled:bg-bg-muted disabled:text-text-muted",
+          "disabled:bg-bg-soft disabled:border-transparent dark:disabled:bg-bg-muted disabled:text-text-muted",
         ),
         destructive: cn(
           // color
@@ -71,7 +71,7 @@ const buttonVariants = cva(
           // hover
           "hover:bg-bg-danger-saturated",
           // disabeld
-          "disabled:bg-bg-soft dark:disabled:bg-bg-muted disabled:text-text-muted",
+          "disabled:bg-bg-soft disabled:border-transparent dark:disabled:bg-bg-muted disabled:text-text-muted",
         ),
       },
 

@@ -6,33 +6,86 @@ import { Checkbox } from "@/components/ui/checkbox";
 export default function page() {
   return (
     <div className="flex h-screen items-center justify-center gap-6">
-      <ThemeMode />
-      <div className="flex flex-col gap-2">
-        <Button variant="primary">primary</Button>
+      <section>
+        {" "}
+        <ThemeMode />{" "}
+      </section>
 
-        <Button variant="primary" disabled>
-          disabled
-        </Button>
+      <section className="flex flex-col items-start justify-center gap-2">
+        {/* primary */}
+        <div className="primary flex gap-2">
+          <Button variant="primary">primary</Button>
+          <Button variant="primary" disabled>
+            primary disabled
+          </Button>
+          <Button variant="primary" loading>
+            primary loading
+          </Button>
+        </div>
 
-        <Button variant="primary" loading>
-          loading
-        </Button>
+        {/* secondry */}
+        <div className="secondry flex gap-2">
+          <Button variant="secondary">secondary</Button>
+          <Button variant="secondary" disabled>
+            secondary disabled
+          </Button>
+          <Button variant="secondary" loading>
+            secondary loading
+          </Button>
+        </div>
 
-        <Button variant="secondary">secondary</Button>
-        <Button variant="subtle">subtle</Button>
+        {/* outline */}
+        <div className="outLine flex gap-2">
+          <Button variant="outline">outline</Button>
+          <Button variant="outline" disabled>
+            outline disabled
+          </Button>
+          <Button variant="outline" loading>
+            outline loading
+          </Button>
+        </div>
 
-        <Button variant="ghost">ghost</Button>
-        <Button variant="outline">outline</Button>
+        {/* subtle */}
+        <div className="subtle flex gap-2">
+          <Button variant="subtle">subtle</Button>
+          <Button variant="subtle" disabled>
+            subtle disabled
+          </Button>
+          <Button variant="subtle" loading>
+            subtle loading
+          </Button>
+        </div>
 
-        <Button variant="destructive">destructive</Button>
-      </div>
-      <div className="flex flex-col gap-2">
+        {/* gost */}
+        <div className="gost flex gap-2">
+          <Button variant="ghost">ghost</Button>
+          <Button variant="ghost" disabled>
+            ghost disabled
+          </Button>
+          <Button variant="ghost" loading>
+            ghost loading
+          </Button>
+        </div>
+
+        {/* gost */}
+        <div className="gost flex gap-2">
+          <Button variant="ghost">ghost</Button>
+          <Button variant="ghost" disabled>
+            ghost disabled
+          </Button>
+          <Button variant="ghost" loading>
+            ghost loading
+          </Button>
+        </div>
+      </section>
+
+      <section className="flex flex-col gap-2">
         <Checkbox label="checkbox" />
         <Checkbox
-          label={"error checked"}
+          label="error checked"
           error="You must accept terms and conditions"
         />
-      </div>
+      </section>
       <div className="flex flex-col gap-2">
         <Badge> Badge primary </Badge>
         <Badge variant="secondary"> Badge Scandry</Badge>
