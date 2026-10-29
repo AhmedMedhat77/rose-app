@@ -1,5 +1,3 @@
-import { LocaleSwitcher } from "@/components/locale-switcher";
-import { ThemeSwitcher } from "@/components/theme-switcher";
 import { ThemeProvider } from "@/context/theme.context";
 import type { Metadata } from "next";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
@@ -8,6 +6,7 @@ import { routing } from "../../i18n/routing";
 import { geistMono, sarabun, tajawal } from "../fonts";
 import "../globals.css";
 import Footer from "@/components/layout/footer/footer";
+import { Header } from "@/components/layout/header/header";
 
 export const metadata: Metadata = {
   title: "Rose App",
@@ -41,10 +40,7 @@ export default async function RootLayout({
       <body className="flex min-h-full flex-col">
         <ThemeProvider>
           <NextIntlClientProvider>
-            <header className="flex flex-wrap items-center justify-between">
-              <LocaleSwitcher />
-              <ThemeSwitcher />
-            </header>
+            <Header />
 
             <main className="flex-1">{children}</main>
             <Footer />
