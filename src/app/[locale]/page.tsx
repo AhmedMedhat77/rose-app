@@ -5,7 +5,6 @@ import {
   InputOTPGroup,
   InputOTPSlot,
 } from "@/components/ui/input-otp";
-import { Textarea } from "@/components/ui/textarea";
 import { getTranslations } from "next-intl/server";
 
 export default async function HomePage() {
@@ -32,8 +31,6 @@ export default async function HomePage() {
           </InputOTPGroup>
         </InputOTP>
       </div>
-
-      <Textarea variant="default" label="Hello" placeholder="Welcom" />
     </div>
   );
 }
