@@ -24,6 +24,21 @@ const TOAST_ICONS: Record<ToastState, React.ReactNode> = {
 
 const toast = ToastPrimitive.createToastManager()
 
+/**
+ * Adds a toast to the global queue. Requires `Toaster` to be mounted.
+ *
+ * @param state Visual variant: informative, successful, or unsuccessful.
+ * @param title Optional message. Omit to use the translated default for `state`.
+ *   Pass an already-translated string for custom copy.
+ * @returns The toast id, for later `toast.close` or `toast.update`.
+ */
+function addToast(state: ToastState, title?: string) {
+  return toast.add({
+    type: state,
+    ...(title ? { title } : {}),
+  })
+}
+
 /** Provides toast context, auto-dismiss timeout, and the visible-toast limit. */
 function ToastProvider({ ...props }: ToastPrimitive.Provider.Props) {
   return <ToastPrimitive.Provider {...props} />
@@ -213,6 +228,7 @@ export {
   ToastTitle,
   ToastViewport,
   createToastManager,
+  addToast,
   toast,
   useToastManager,
 }
