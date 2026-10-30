@@ -111,7 +111,7 @@ function ToastTitle({ className, ...props }: ToastPrimitive.Title.Props) {
   return (
     <ToastPrimitive.Title
       data-slot="toast-title"
-      className={cn("text-sm font-semibold", className)}
+      className={cn("text-sm font-semibold leading-normal ", className)}
       {...props}
     />
   )
@@ -157,17 +157,22 @@ function ToastIcon({ type }: { type: ToastState }) {
 
 /** Renders the current queue from the toast manager. */
 function ToastList({ closeLabel }: { closeLabel: string }) {
+  const t = useTranslations("toast")
   const { toasts } = ToastPrimitive.useToastManager()
 
   return toasts.map((toastItem) => {
     const state = isToastState(toastItem.type) ? toastItem.type : TOAST_STATE.Informative
+    const title =
+      typeof toastItem.title === "string" && toastItem.title.trim() !== ""
+        ? toastItem.title
+        : t(state)
 
     return (
       <Toast key={toastItem.id} toast={toastItem} variant={state}>
         <ToastContent>
           <ToastIcon type={state} />
           <div className="flex min-w-0 flex-1 flex-col gap-1">
-            <ToastTitle />
+            <ToastTitle>{title}</ToastTitle>
           </div>
           <ToastClose aria-label={closeLabel} />
         </ToastContent>
