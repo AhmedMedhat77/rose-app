@@ -13,5 +13,13 @@
         "unsuccessful": "عملية غير ناجحة",
         "close": "إغلاق الإشعار",
         "notifications": "الإشعارات"
+    },
+    "textarea": {
+        "label": "التسمية",
+        "placeholder": "اكتب هنا...",
+        "defaultValue": "القيمة الافتراضية",
+        "disabled": "غير مفعل",
+        "maxLength": "الحد الأقصى للطول",
+        "errorMessage": "هذا الحقل مطلوب."
     }
 }

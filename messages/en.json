@@ -13,5 +13,13 @@
         "unsuccessful": "Unsuccessful operation",
         "close": "Close toast",
         "notifications": "Notifications"
+    },
+    "textarea": {
+        "label": "Label",
+        "placeholder": "Placeholder",
+        "defaultValue": "Default value",
+        "disabled": "Disabled",
+        "maxLength": "Max length",
+        "errorMessage": "This field is required."
     }
 }
