@@ -3,7 +3,7 @@
 import * as React from "react";
 import { Popover as PopoverPrimitive } from "@base-ui/react/popover";
 import { cn } from "cn";
-import { ChevronDownIcon, ChevronUpIcon } from "lucide-react";
+import { ChevronDownIcon } from "lucide-react";
 import { Command, CommandInput, CommandItem, CommandList } from "./command";
 function Popover({ ...props }: PopoverPrimitive.Root.Props) {
   return <PopoverPrimitive.Root data-slot="popover" {...props} />;
@@ -286,11 +286,12 @@ function Combobox({
         >
           {selectedOption ? selectedOption.label : placeholder}
         </span>
-        {open ? (
-          <ChevronUpIcon className="text-muted-foreground size-4 shrink-0" />
-        ) : (
-          <ChevronDownIcon className="text-muted-foreground size-4 shrink-0" />
-        )}
+        <ChevronDownIcon
+          className={cn(
+            "text-muted-foreground size-4 shrink-0 transition-transform duration-200",
+            open && "rotate-180",
+          )}
+        />
       </PopoverTrigger>
 
       <PopoverContent

@@ -43,7 +43,7 @@ function SelectTrigger({
         // border and color
         "border-soft bg-background aria-invalid:border-destructive aria-invalid:ring-destructive/20 data-placeholder:text-muted-foreground",
         // layout and spacing
-        "flex w-full items-center justify-between gap-2 rounded-lg border p-4",
+        "group flex w-full items-center justify-between gap-2 rounded-lg border p-4",
         // typography
         "text-sm whitespace-nowrap",
         // transitions and interaction
@@ -61,7 +61,7 @@ function SelectTrigger({
       {children}
       <SelectPrimitive.Icon
         render={
-          <ChevronDownIcon className="text-muted-foreground pointer-events-none size-4" />
+          <ChevronDownIcon className="text-muted-foreground pointer-events-none size-4 transition-transform duration-200 group-data-popup-open:rotate-180" />
         }
       />
     </SelectPrimitive.Trigger>
@@ -107,9 +107,12 @@ function SelectContent({
             // layout and positioning
             "relative isolate z-50 origin-(--transform-origin)",
             // size
-            "max-h-(--available-height) w-(--anchor-width) min-w-36",
+            "max-h-61.25 w-(--anchor-width) min-w-36",
             // overflow and border radius
             "overflow-x-hidden overflow-y-auto rounded-lg border",
+
+            // scrollbar
+            "no-scrollbar [scrollbar-width:none] [&::-webkit-scrollbar]:hidden",
             className,
           )}
           {...props}

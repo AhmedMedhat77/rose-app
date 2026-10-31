@@ -67,7 +67,7 @@ function CommandInput({
   ...props
 }: React.ComponentProps<typeof CommandPrimitive.Input>) {
   return (
-    <div data-slot="command-input-wrapper" className="p-1 pb-0">
+    <div data-slot="command-input-wrapper" className="p-2.5">
       <InputGroup className="border-soft bg-background h-12.25 gap-2 rounded-[6px] border px-4 text-sm whitespace-nowrap shadow-none! transition-colors outline-none *:data-[slot=input-group-addon]:pl-2!">
         <CommandPrimitive.Input
           data-slot="command-input"
@@ -93,7 +93,7 @@ function CommandList({
         // scrollbar
         "no-scrollbar [scrollbar-width:none] [&::-webkit-scrollbar]:hidden",
         // spacing and sizing
-        "mt-2.5 max-h-72 scroll-py-1",
+        "scroll-py max-h-78.5",
         // overflow
         "overflow-x-hidden overflow-y-auto",
         // focus

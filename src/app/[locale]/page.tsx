@@ -36,21 +36,37 @@ export default async function HomePage() {
     { value: "option15", label: "option15" },
     { value: "option16", label: "option16" },
   ];
+  const items = [
+    { value: "option1", label: "First Option" },
+    { value: "option2", label: "Second Option" },
+    { value: "option3", label: "Third Option" },
+    { value: "option6", label: "option6" },
+    { value: "option7", label: "option7" },
+    { value: "option8", label: "option8" },
+    { value: "option9", label: "option9" },
+    { value: "option10", label: "option10" },
+    { value: "option11", label: "option11" },
+    { value: "option12", label: "option12" },
+    { value: "option13", label: "option13" },
+    { value: "option14", label: "option14" },
+    { value: "option15", label: "option15" },
+    { value: "option16", label: "option16" },
+  ];
   return (
     <div className="flex flex-col items-center justify-center gap-4">
       <div className="flex w-50 flex-col justify-center space-y-1.5">
         <label className="text-sm font-normal"></label>
-        <Select>
+        <Select items={items}>
           <SelectTrigger>
             <SelectValue placeholder={t("select.placeholder")} />
           </SelectTrigger>
 
           <SelectContent>
-            {/* <SelectItem value="placeholder" disabled>{t("select.placeholder")} </SelectItem>          <SelectItem value="option1">Option</SelectItem> */}
-            <SelectItem value="option2">Option</SelectItem>
-            <SelectItem value="option3">Option</SelectItem>
-            <SelectItem value="option4">Option</SelectItem>
-            <SelectItem value="option5">Option</SelectItem>
+            {items.map((item) => (
+              <SelectItem key={item.value} value={item.value}>
+                {item.label}
+              </SelectItem>
+            ))}
           </SelectContent>
         </Select>
       </div>
