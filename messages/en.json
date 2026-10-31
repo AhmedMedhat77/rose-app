@@ -1,33 +1,29 @@
 {
-    "welcome": "welcome",
-    "language": "language",
-    "theme": {
-        "label": "theme",
-        "light": "light",
-        "dark": "dark",
-        "system": "system"
-    },
-    "toast": {
-        "informative": "Informative message",
-        "successful": "Successful operation",
-        "unsuccessful": "Unsuccessful operation",
-        "close": "Close toast",
-        "notifications": "Notifications"
-    },
-    "pagination": {
-        "label": "Pagination",
-        "first": "First page",
-        "previous": "Previous page",
-        "next": "Next page",
-        "last": "Last page",
-        "page": "Page {page}"
-    },
-    "textarea": {
-        "label": "Label",
-        "placeholder": "Placeholder",
-        "defaultValue": "Default value",
-        "disabled": "Disabled",
-        "maxLength": "Max length",
-        "errorMessage": "This field is required."
-    }
+  "welcome": "welcome",
+  "language": "language",
+  "theme": {
+    "label": "theme",
+    "light": "light",
+    "dark": "dark",
+    "system": "system"
+  },
+  "toast": {
+    "informative": "Informative message",
+    "successful": "Successful operation",
+    "unsuccessful": "Unsuccessful operation",
+    "close": "Close toast",
+    "notifications": "Notifications"
+  },
+  "pagination": {
+    "label": "Pagination",
+    "first": "First page",
+    "previous": "Previous page",
+    "next": "Next page",
+    "last": "Last page",
+    "page": "Page {page}"
+  },
+  "textarea": {
+    "label": "Label",
+    "placeholder": "Placeholder"
+  }
 }

@@ -1,37 +1,37 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import { useSearchParams } from "next/navigation"
-import { useLocale, useTranslations } from "next-intl"
+import * as React from "react";
+import { useSearchParams } from "next/navigation";
+import { useLocale, useTranslations } from "next-intl";
 import {
   ChevronLeft,
   ChevronRight,
   ChevronsLeft,
   ChevronsRight,
-} from "lucide-react"
-import { cn } from "cn"
-import { usePathname, useRouter } from "@/i18n/navigation"
+} from "lucide-react";
+import { cn } from "cn";
+import { usePathname, useRouter } from "@/i18n/navigation";
 
-const DEFAULT_PAGE_SIZE = 10
+const DEFAULT_PAGE_SIZE = 10;
 
-type PageToken = number | "ellipsis"
+type PageToken = number | "ellipsis";
 
 export type PaginationChange = {
-  page: number
-  limit: number
-  signal: AbortSignal
-}
+  page: number;
+  limit: number;
+  signal: AbortSignal;
+};
 
 function parsePositiveInt(value: string | null): number | null {
-  if (value == null || !/^\d+$/.test(value)) return null
-  const parsed = Number(value)
-  if (!Number.isSafeInteger(parsed) || parsed < 1) return null
-  return parsed
+  if (value == null || !/^\d+$/.test(value)) return null;
+  const parsed = Number(value);
+  if (!Number.isSafeInteger(parsed) || parsed < 1) return null;
+  return parsed;
 }
 
 function resolvePageSize(pageSize: number): number {
-  if (!Number.isInteger(pageSize) || pageSize < 1) return DEFAULT_PAGE_SIZE
-  return pageSize
+  if (!Number.isInteger(pageSize) || pageSize < 1) return DEFAULT_PAGE_SIZE;
+  return pageSize;
 }
 
 /**
@@ -44,15 +44,15 @@ function resolvePageSize(pageSize: number): number {
  * ellipsis and the opposite boundary page.
  */
 function getPageItems(current: number, total: number): PageToken[] {
-  if (total <= 0) return []
+  if (total <= 0) return [];
   if (total <= 7) {
-    return Array.from({ length: total }, (_, index) => index + 1)
+    return Array.from({ length: total }, (_, index) => index + 1);
   }
-  if (current <= 4) return [1, 2, 3, 4, 5, "ellipsis", total]
+  if (current <= 4) return [1, 2, 3, 4, 5, "ellipsis", total];
   if (current >= total - 3) {
-    return [1, "ellipsis", total - 4, total - 3, total - 2, total - 1, total]
+    return [1, "ellipsis", total - 4, total - 3, total - 2, total - 1, total];
   }
-  return [1, "ellipsis", current - 1, current, current + 1, "ellipsis", total]
+  return [1, "ellipsis", current - 1, current, current + 1, "ellipsis", total];
 }
 
 /** Arabic uses Indian digits (٠١٢٣); English keeps Western digits. */
@@ -60,16 +60,16 @@ function formatPageNumber(value: number, locale: string): string {
   return new Intl.NumberFormat(locale, {
     numberingSystem: locale === "ar" ? "arab" : "latn",
     useGrouping: false,
-  }).format(value)
+  }).format(value);
 }
 
 function readQuery(searchParams: URLSearchParams): Record<string, string> {
-  const query: Record<string, string> = {}
+  const query: Record<string, string> = {};
   searchParams.forEach((value, key) => {
-    if (key === "page" || key === "limit") return
-    query[key] = value
-  })
-  return query
+    if (key === "page" || key === "limit") return;
+    query[key] = value;
+  });
+  return query;
 }
 
 /**
@@ -90,43 +90,43 @@ function Pagination({
   onChange,
   className,
 }: {
-  totalItems: number
-  pageSize?: number
-  onChange?: (state: PaginationChange) => void
-  className?: string
+  totalItems: number;
+  pageSize?: number;
+  onChange?: (state: PaginationChange) => void;
+  className?: string;
 }) {
-  const t = useTranslations("pagination")
-  const locale = useLocale()
-  const isRtl = locale === "ar"
-  const router = useRouter()
-  const pathname = usePathname()
-  const searchParams = useSearchParams()
-  const onChangeRef = React.useRef(onChange)
+  const t = useTranslations("pagination");
+  const locale = useLocale();
+  const isRtl = locale === "ar";
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const onChangeRef = React.useRef(onChange);
 
   React.useEffect(() => {
-    onChangeRef.current = onChange
-  }, [onChange])
+    onChangeRef.current = onChange;
+  }, [onChange]);
 
-  const pageParam = searchParams.get("page")
-  const limitParam = searchParams.get("limit")
-  const parsedPage = parsePositiveInt(pageParam)
-  const parsedLimit = parsePositiveInt(limitParam)
-  const limit = parsedLimit ?? resolvePageSize(pageSize)
-  const totalPages = totalItems > 0 ? Math.ceil(totalItems / limit) : 0
-  const page = totalPages === 0 ? 1 : Math.min(parsedPage ?? 1, totalPages)
-  const items = getPageItems(page, totalPages)
-  const atStart = totalPages === 0 || page <= 1
-  const atEnd = totalPages === 0 || page >= totalPages
+  const pageParam = searchParams.get("page");
+  const limitParam = searchParams.get("limit");
+  const parsedPage = parsePositiveInt(pageParam);
+  const parsedLimit = parsePositiveInt(limitParam);
+  const limit = parsedLimit ?? resolvePageSize(pageSize);
+  const totalPages = totalItems > 0 ? Math.ceil(totalItems / limit) : 0;
+  const page = totalPages === 0 ? 1 : Math.min(parsedPage ?? 1, totalPages);
+  const items = getPageItems(page, totalPages);
+  const isStart = totalPages === 0 || page <= 1;
+  const isEnd = totalPages === 0 || page >= totalPages;
 
   React.useEffect(() => {
-    const pageIsInvalid = pageParam != null && pageParam !== String(page)
-    const limitIsInvalid = limitParam != null && parsedLimit == null
-    if (!pageIsInvalid && !limitIsInvalid) return
+    const pageIsInvalid = pageParam != null && pageParam !== String(page);
+    const limitIsInvalid = limitParam != null && parsedLimit == null;
+    if (!pageIsInvalid && !limitIsInvalid) return;
 
-    const query = readQuery(searchParams)
-    if (pageParam != null) query.page = String(page)
-    if (parsedLimit != null) query.limit = String(parsedLimit)
-    router.replace({ pathname, query })
+    const query = readQuery(searchParams);
+    if (pageParam != null) query.page = String(page);
+    if (parsedLimit != null) query.limit = String(parsedLimit);
+    router.replace({ pathname, query });
   }, [
     limitParam,
     page,
@@ -135,13 +135,13 @@ function Pagination({
     pathname,
     router,
     searchParams,
-  ])
+  ]);
 
   React.useEffect(() => {
-    const controller = new AbortController()
-    onChangeRef.current?.({ page, limit, signal: controller.signal })
-    return () => controller.abort()
-  }, [page, limit])
+    const controller = new AbortController();
+    onChangeRef.current?.({ page, limit, signal: controller.signal });
+    return () => controller.abort();
+  }, [page, limit]);
 
   function goTo(nextPage: number) {
     if (
@@ -150,13 +150,13 @@ function Pagination({
       nextPage < 1 ||
       nextPage > totalPages
     ) {
-      return
+      return;
     }
 
-    const query = readQuery(searchParams)
-    query.page = String(nextPage)
-    query.limit = String(limit)
-    router.push({ pathname, query })
+    const query = readQuery(searchParams);
+    query.page = String(nextPage);
+    query.limit = String(limit);
+    router.push({ pathname, query });
   }
 
   return (
@@ -172,7 +172,7 @@ function Pagination({
         <li>
           <PaginationControl
             label={t("first")}
-            disabled={atStart}
+            disabled={isStart}
             onClick={() => goTo(1)}
           >
             {isRtl ? (
@@ -185,7 +185,7 @@ function Pagination({
         <li>
           <PaginationControl
             label={t("previous")}
-            disabled={atStart}
+            disabled={isStart}
             onClick={() => goTo(page - 1)}
           >
             {isRtl ? (
@@ -219,7 +219,7 @@ function Pagination({
         <li>
           <PaginationControl
             label={t("next")}
-            disabled={atEnd}
+            disabled={isEnd}
             onClick={() => goTo(page + 1)}
           >
             {isRtl ? (
@@ -232,7 +232,7 @@ function Pagination({
         <li>
           <PaginationControl
             label={t("last")}
-            disabled={atEnd}
+            disabled={isEnd}
             onClick={() => goTo(totalPages)}
           >
             {isRtl ? (
@@ -244,20 +244,20 @@ function Pagination({
         </li>
       </ul>
     </nav>
-  )
+  );
 }
 
 function controlClassName(active = false) {
   return cn(
     // No color transition: when the window shifts, the old page number moves
     // into a new slot and would stay primary for a moment while the color faded, and it's un-needed behavior.
-    "inline-flex size-9 items-center justify-center rounded-lg border text-sm leading-none font-semibold outline-none",
+    "inline-flex size-8 items-center justify-center rounded-lg border text-sm leading-none font-semibold outline-none",
     "focus-visible:ring-2 focus-visible:ring-ring-default",
     "disabled:pointer-events-none disabled:text-text-muted",
     active
       ? "border-transparent bg-bg-primary text-text-inverse hover:bg-bg-primary-saturated"
       : "border-border-muted bg-bg-plain text-text-plain hover:bg-bg-muted",
-  )
+  );
 }
 
 function PaginationControl({
@@ -267,11 +267,11 @@ function PaginationControl({
   onClick,
   children,
 }: {
-  label: string
-  active?: boolean
-  disabled?: boolean
-  onClick: () => void
-  children: React.ReactNode
+  label: string;
+  active?: boolean;
+  disabled?: boolean;
+  onClick: () => void;
+  children: React.ReactNode;
 }) {
   return (
     <button
@@ -285,7 +285,7 @@ function PaginationControl({
     >
       {children}
     </button>
-  )
+  );
 }
 
-export { Pagination }
+export { Pagination };
